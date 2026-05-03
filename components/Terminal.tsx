@@ -25,8 +25,7 @@ function buildCommands(t: Translations, lang: "en" | "es"): Record<string, () =>
 
     whoami: () => [
       `${lbl.name}: ${SITE_DATA.name}`,
-      `${lbl.role}: ${SITE_DATA.role}`,
-      `${lbl.company}: ${SITE_DATA.company}`,
+      `${lbl.role}: ${SITE_DATA.role}`, 
       `${lbl.gpa}: ${SITE_DATA.education.gpa} — ${SITE_DATA.education.university}`,
       `${lbl.focus}: ${SITE_DATA.currentFocus[lang]}`,
       `${lbl.location}: ${SITE_DATA.location}`,

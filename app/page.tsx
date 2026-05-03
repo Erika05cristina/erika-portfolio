@@ -1,65 +1,181 @@
-import Image from "next/image";
+import { SITE_DATA } from "@/config/data";
+import ProjectCard from "@/components/ProjectCard";
+import CyberLab from "@/components/CyberLab";
+import Terminal from "@/components/Terminal";
 
 export default function Home() {
+  const { name, role, subtitle, company, achievements, skills, socials } = SITE_DATA;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="page-wrapper">
+      {/* ── Ambient blobs ───────────────────────────────────── */}
+      <div className="ambient-blob ambient-blob--1" aria-hidden="true" />
+      <div className="ambient-blob ambient-blob--2" aria-hidden="true" />
+
+      {/* ── Navigation ──────────────────────────────────────── */}
+      <header className="navbar" role="banner">
+        <span className="navbar__logo">
+          <span className="navbar__logo-bracket">&lt;</span>
+          EV
+          <span className="navbar__logo-bracket">/&gt;</span>
+        </span>
+        <nav className="navbar__links" aria-label="Main navigation">
+          <a href="#projects" className="navbar__link">Projects</a>
+          <a href="#skills" className="navbar__link">Skills</a>
+          <a href="#cyber-lab" className="navbar__link">Cyber-Lab</a>
+          <a href="#terminal" className="navbar__link">Terminal</a>
+        </nav>
+        <a
+          href={socials.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="navbar__cta"
+        >
+          Hire Me ↗
+        </a>
+      </header>
+
+      <main id="main-content">
+        {/* ── Hero ────────────────────────────────────────────── */}
+        <section id="hero" className="hero-section">
+          <div className="hero-content">
+            <p className="hero-eyebrow">
+              <span className="hero-eyebrow__dot" aria-hidden="true" />
+              Available for DevSecOps &amp; Forensics roles
+            </p>
+
+            <h1 className="hero-name">{name}</h1>
+
+            <div className="hero-roles">
+              <span className="hero-role hero-role--primary">{role}</span>
+              <span className="hero-role-divider" aria-hidden="true">→</span>
+              <span className="hero-role hero-role--accent">{subtitle}</span>
+            </div>
+
+            <p className="hero-company">
+              Currently at{" "}
+              <strong className="hero-company__name">{company}</strong>
+            </p>
+
+            {/* Achievement chips */}
+            <div className="achievement-row" role="list">
+              {achievements.map((a) => (
+                <div key={a.label} className="achievement-chip" role="listitem">
+                  <span aria-hidden="true">{a.icon}</span>
+                  <div>
+                    <span className="achievement-chip__label">{a.label}</span>
+                    <span className="achievement-chip__detail">{a.detail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="hero-ctas">
+              <a href="#projects" className="btn btn--primary">
+                View Projects
+              </a>
+              <a
+                href={socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--ghost"
+              >
+                GitHub ↗
+              </a>
+            </div>
+          </div>
+
+          {/* Decorative code block */}
+          <div className="hero-code-block" aria-hidden="true">
+            <div className="code-block__titlebar">
+              <span className="code-dot red" />
+              <span className="code-dot yellow" />
+              <span className="code-dot green" />
+              <span className="code-block__filename">profile.ts</span>
+            </div>
+            <pre className="code-block__body"><code>{`const engineer = {
+  name: "Erika Villa",
+  stack: ["TypeScript", "Python",
+          "Next.js", "Security"],
+  focus: "DevSecOps",
+  status: "open_to_work",
+  motto: "Build secure. Think first."
+};`}</code></pre>
+          </div>
+        </section>
+
+        {/* ── Projects ────────────────────────────────────────── */}
+        <section id="projects" className="section">
+          <div className="section-header">
+            <h2 className="section-title">Key Projects</h2>
+            <p className="section-subtitle">
+              Things I&apos;ve built with purpose.
+            </p>
+          </div>
+          <div className="projects-grid">
+            {[...SITE_DATA.projects].map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        </section>
+
+        {/* ── Skills ──────────────────────────────────────────── */}
+        <section id="skills" className="section">
+          <div className="section-header">
+            <h2 className="section-title">Tech Stack</h2>
+            <p className="section-subtitle">Tools I trust in production.</p>
+          </div>
+          <div className="skills-grid">
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category} className="skill-group">
+                <h3 className="skill-group__title">{category}</h3>
+                <div className="skill-group__chips">
+                  {items.map((skill) => (
+                    <span key={skill} className="skill-chip">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Cyber Lab ───────────────────────────────────────── */}
+        <CyberLab />
+
+        {/* ── Terminal ────────────────────────────────────────── */}
+        <section id="terminal" className="section section--terminal">
+          <div className="section-header">
+            <h2 className="section-title">Interactive Terminal</h2>
+            <p className="section-subtitle">
+              Prefer the command line? Try{" "}
+              <code className="inline-code">help</code>,{" "}
+              <code className="inline-code">whoami</code>,{" "}
+              <code className="inline-code">projects</code>.
+            </p>
+          </div>
+          <Terminal />
+        </section>
       </main>
+
+      {/* ── Footer ──────────────────────────────────────────── */}
+      <footer className="footer">
+        <p className="footer__text">
+          Built with Next.js &amp; TypeScript ·{" "}
+          <span className="footer__pink">Erika Cristina Villa Quishpi</span> ·{" "}
+          {new Date().getFullYear()}
+        </p>
+        <div className="footer__links">
+          <a href={socials.github} target="_blank" rel="noopener noreferrer" className="footer__link">
+            GitHub
+          </a>
+          <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="footer__link">
+            LinkedIn
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

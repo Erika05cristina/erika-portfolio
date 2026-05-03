@@ -2,8 +2,7 @@ export const SITE_DATA = {
   name: "Erika Cristina Villa Quishpi",
   shortName: "Erika Villa",
   role: "Computer Science Engineer | Full Stack Developer",
-  // Reflejamos que estás en transición, no que ya eres experta
-  subtitle: "Building Full Stack Solutions → Learning DevSecOps & Security",
+  subtitle: "Bridging Full Stack Development with Cybersecurity",
   company: "InitGrammers S.A.S.",
   location: "Cuenca, Ecuador 🇪🇨",
 
@@ -14,90 +13,106 @@ export const SITE_DATA = {
     status: "Graduada",
   },
 
-  achievements: [
-    { icon: "🏆", label: "2do Lugar", detail: "Latin Hack - Proyecto InvisiClaim" },
-    { icon: "🔬", label: "Investigadora", detail: "Cátedra UNESCO - Proyecto VOLKI" },
-    { icon: "🎤", label: "Expositora", detail: "2do Congreso Int. Tecnologías Disruptivas" },
-    { icon: "✨", label: "Mentora STEM", detail: "STEMHER - CODEIS" },
-  ],
+  socials: {
+    github: "https://github.com/Erika05cristina",
+    linkedin: "https://www.linkedin.com/in/erika-villa-a63379120/",
+    email: "erika05cristin@gmail.com",
+  },
 
-  // Cambiamos "Experta" por "Enfoque de Aprendizaje"
-  currentFocus: "En transición hacia Ciberseguridad y profundizando en Web3",
+  currentFocus: {
+    en: "Transitioning to Cybersecurity and deepening in Web3",
+    es: "En transición hacia Ciberseguridad y profundizando en Web3",
+  },
 
   projects: [
     {
       id: "invisiclaim",
       title: "InvisiClaim",
       emoji: "🛡️",
-      tagline: "Exploración de autoría con Blockchain",
-      description:
-        "Proyecto de hackathon centrado en la protección de autoría digital. Implementé lógica de hashes y el protocolo commit-reveal para asegurar contenido de forma privada.",
-      tech: ["Blockchain (Conceptos)", "Cryptography", "Hashes"],
-      status: "Hackathon Project",
+      tech: ["Blockchain (Concepts)", "Cryptography", "Hashes"],
+      status: "hackathon" as const,
       highlight: true,
     },
     {
       id: "sybil",
       title: "Sybil",
       emoji: "🔍",
-      tagline: "Sentinel de Riesgos con MCP",
-      description:
-        "Desarrollo de un servidor de inteligencia de riesgo que utiliza el protocolo MCP para auditar bases de datos en Notion, detectando conflictos en tiempo real.",
       tech: ["MCP", "TypeScript", "Notion API"],
-      status: "Active Development",
+      status: "hackathon" as const,
       highlight: true,
     },
     {
       id: "volki",
       title: "VOLKI",
       emoji: "🤖",
-      tagline: "Asistente Robótico (Investigación)",
-      description:
-        "Implementación de modelos de visión computacional y lenguaje para la interacción humano-máquina, desarrollado bajo la Cátedra UNESCO.",
       tech: ["Python", "Computer Vision", "NLP"],
-      status: "Research",
+      status: "research" as const,
       highlight: false,
     },
     {
       id: "trust",
       title: "T.R.U.S.T.",
       emoji: "🔐",
-      tagline: "Detección de Phishing (Hackathon)",
-      description:
-        "Diseño de un agente para detectar suplantación de identidad basado en el estándar EIP-8004 durante la Aleph Hackathon.",
       tech: ["AI", "Security Basics", "EIP-8004"],
-      status: "Hackathon Concept",
+      status: "hackathon" as const,
       highlight: false,
     },
   ] as const,
 
-  skills: {
-    core: ["TypeScript", "Node.js", "Python", "Full Stack Development"],
-    learning_now: ["DevSecOps", "Forense Digital", "Web3 Fundamentals", "Network Security"],
-    tools: ["Docker", "Linux", "Git", "Notion API", "OpenCV"],
-  },
-
-  certifications: [
-    "Fundamentos de Redes y Comunicaciones",
-    "Ciberseguridad: Protege tu información",
-    "ML Solutions on Vertex AI (Skill Badge)",
-    "Salvaguardia y Protección de la Niñez (UNICEF)",
-    "Introducción a Web3 - Red Stellar (Código Futura)",
+skills: {
+  core: [
+    "JavaScript (ES6+)",
+    "TypeScript", 
+    "Node.js", 
+    "Python", 
+    "Full Stack Development"
   ],
+  learning_now: [
+    "DevSecOps", 
+    "Digital Forensics", 
+    "Web3 Fundamentals", 
+    "Network Security"
+  ],
+  tools: [
+    "Docker",
+    "Linux", 
+    "Git", 
+    "Notion API",
+    "OpenCV",
+    "PostgreSQL/NoSQL" 
+  ],
+},
 
-  impact: {
-    stem: "Voluntariado en STEMHER para motivar a más mujeres en ingeniería.",
-    comunidad: "Ponente sobre robótica educativa e IA ética.",
+  cyberLab: {
+   paths: [
+  { 
+    id: "network", 
+    progress: 50,
+    status: "in-progress" as const, 
+    tags: ["TCP/IP", "Wireshark", "Network Fundamentals"] 
+  },
+  { 
+    id: "devsecops", 
+    progress: 35, 
+    status: "in-progress" as const, 
+    tags: ["Docker", "Linux", "CI/CD Basics"] 
+  },
+  { 
+    id: "web3", 
+    progress: 30, 
+    status: "in-progress" as const, 
+    tags: ["Stellar Network", "Hashes", "Commit-Reveal Protocol"] 
+  },
+  { 
+    id: "forensics", 
+    progress: 20, 
+    status: "in-progress" as const, 
+    tags: ["Log Analysis", "Phishing Detection", "MCP Security"] 
+  },
+],
   },
 
   terminal: {
     prompt: "erika@learning-lab:~$",
-    welcomeMessage: [
-      "╔══════════════════════════════════════════════╗",
-      "║    ERIKA VILLA | FULL STACK DEVELOPER        ║",
-      "║    Currently learning Security & Web3        ║",
-      "╚══════════════════════════════════════════════╝",
-      "Type 'help' to see my learning path and projects.",
-    ],
   },
 } as const;

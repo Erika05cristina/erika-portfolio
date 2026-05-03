@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect, KeyboardEvent } from "react";
 import { SITE_DATA } from "@/config/data";
+import { useLanguage } from "@/context/LanguageContext";
+import type { Translations } from "@/config/translations";
 
 /* ─── Types ──────────────────────────────────────────────────── */
 type LineType = "output" | "input" | "error" | "success" | "banner";
@@ -11,63 +13,57 @@ interface TerminalLine {
   content: string;
 }
 
-/* ─── Command Registry ───────────────────────────────────────── */
-const COMMANDS: Record<string, () => string[]> = {
-  help: () => [
-    "┌─────────────────────────────────────┐",
-    "│         Available Commands          │",
-    "├─────────────────────────────────────┤",
-    "│  help       → Show this message     │",
-    "│  whoami     → Profile summary       │",
-    "│  projects   → List all projects     │",
-    "│  skills     → Tech stack            │",
-    "│  contact    → Contact info          │",
-    "│  clear      → Clear terminal        │",
-    "└─────────────────────────────────────┘",
-  ],
+/* ─── Command builder (locale-aware) ─────────────────────────── */
+function buildCommands(t: Translations, lang: "en" | "es"): Record<string, () => string[]> {
+  const l = t.terminal.commands;
+  const lbl = l.whoamiLabels;
+  const pc = t.projectContent;
+  const ps = t.projects.status;
 
-  whoami: () => [
-    `Name     : ${SITE_DATA.name}`,
-    `Role     : ${SITE_DATA.role}`,
-    `Company  : ${SITE_DATA.company}`,
-    `GPA      : ${SITE_DATA.education.gpa} — ${SITE_DATA.education.university}`,
-    `Focus    : ${SITE_DATA.currentFocus}`,
-    `Location : ${SITE_DATA.location}`,
-  ],
+  return {
+    help: () => l.help as unknown as string[],
 
-  projects: () =>
-    SITE_DATA.projects.flatMap((p) => [
-      `▶ ${p.title} — ${p.tagline}`,
-      `  ${p.description.slice(0, 80)}...`,
-      `  Stack: ${p.tech.join(", ")}`,
-      `  Status: [${p.status}]`,
-      "",
-    ]),
+    whoami: () => [
+      `${lbl.name}: ${SITE_DATA.name}`,
+      `${lbl.role}: ${SITE_DATA.role}`,
+      `${lbl.company}: ${SITE_DATA.company}`,
+      `${lbl.gpa}: ${SITE_DATA.education.gpa} — ${SITE_DATA.education.university}`,
+      `${lbl.focus}: ${SITE_DATA.currentFocus[lang]}`,
+      `${lbl.location}: ${SITE_DATA.location}`,
+    ],
 
-  skills: () => {
-    const s = SITE_DATA.skills;
-    return [
-      `Languages  : ${s.languages.join(", ")}`,
-      `Frontend   : ${s.frontend.join(", ")}`,
-      `Backend    : ${s.backend.join(", ")}`,
-      `Security   : ${s.security.join(", ")}`,
-      `Tools      : ${s.tools.join(", ")}`,
-    ];
-  },
+    projects: () =>
+      SITE_DATA.projects.flatMap((p) => {
+        const content = pc[p.id as keyof typeof pc];
+        const statusLabel = ps[p.status];
+        return [
+          `▶ ${p.title} — ${content.tagline}`,
+          `  ${content.description.slice(0, 80)}...`,
+          `  Stack: ${p.tech.join(", ")}`,
+          `  Status: [${statusLabel}]`,
+          "",
+        ];
+      }),
 
-  contact: () => [
-    `GitHub   : ${SITE_DATA.socials.github}`,
-    `LinkedIn : ${SITE_DATA.socials.linkedin}`,
-    `Company  : ${SITE_DATA.company}`,
-  ],
-};
+    skills: () => {
+      const s = SITE_DATA.skills;
+      const cats = t.skills.categories;
+      return [
+        `${cats.core}        : ${s.core.join(", ")}`,
+        `${cats.learning_now} : ${s.learning_now.join(", ")}`,
+        `${cats.tools}       : ${s.tools.join(", ")}`,
+      ];
+    },
 
-/* ─── Initial Lines ──────────────────────────────────────────── */
-const INITIAL_LINES: TerminalLine[] = SITE_DATA.terminal.welcomeMessage.map(
-  (content, i) => ({ id: i, type: "banner", content })
-);
+    contact: () => [
+      `GitHub   : ${SITE_DATA.socials.github}`,
+      `LinkedIn : ${SITE_DATA.socials.linkedin}`,
+      `Email    : ${SITE_DATA.socials.email}`,
+    ],
+  };
+}
 
-let lineCounter = INITIAL_LINES.length;
+let lineCounter = 0;
 const newLine = (type: LineType, content: string): TerminalLine => ({
   id: lineCounter++,
   type,
@@ -76,15 +72,26 @@ const newLine = (type: LineType, content: string): TerminalLine => ({
 
 /* ─── Component ──────────────────────────────────────────────── */
 export default function Terminal() {
-  const [lines, setLines] = useState<TerminalLine[]>(INITIAL_LINES);
+  const { t, lang } = useLanguage();
+  const [lines, setLines] = useState<TerminalLine[]>([]);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
   const [historyIdx, setHistoryIdx] = useState(-1);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Re-init banner when language changes
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    const bannerLines = t.terminal.welcomeMessage.map((content) =>
+      newLine("banner", content)
+    );
+    setLines(bannerLines);
+  }, [t]);
+
+  // Scroll to bottom INSIDE the terminal box only — never bubbles to page
+  useEffect(() => {
+    const el = bodyRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [lines]);
 
   const handleCommand = (raw: string) => {
@@ -100,16 +107,21 @@ export default function Terminal() {
     setHistoryIdx(-1);
 
     if (cmd === "clear") {
-      setLines(INITIAL_LINES);
+      const bannerLines = t.terminal.welcomeMessage.map((content) =>
+        newLine("banner", content)
+      );
+      setLines(bannerLines);
       return;
     }
 
+    const COMMANDS = buildCommands(t, lang);
     const handler = COMMANDS[cmd];
+
     if (!handler) {
       setLines((prev) => [
         ...prev,
         echoLine,
-        newLine("error", `Command not found: '${cmd}'. Type 'help' for options.`),
+        newLine("error", t.terminal.commands.notFound(cmd)),
       ]);
       return;
     }
@@ -150,8 +162,8 @@ export default function Terminal() {
         <span className="terminal-title">erika@cyber-lab — bash</span>
       </div>
 
-      {/* Output area */}
-      <div className="terminal-body">
+      {/* Output area — ref here so scroll stays inside this box */}
+      <div className="terminal-body" ref={bodyRef}>
         {lines.map((line) => (
           <div key={line.id} className={`terminal-line terminal-line--${line.type}`}>
             {line.content || "\u00A0"}
@@ -174,7 +186,6 @@ export default function Terminal() {
           />
           <span className="terminal-cursor" aria-hidden="true" />
         </div>
-        <div ref={bottomRef} />
       </div>
     </div>
   );

@@ -167,6 +167,47 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-1px);
 }
 
+/* Navbar actions group (toggle + CTA) */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--fg-muted);
+  transition: all var(--transition);
+}
+.lang-toggle:hover {
+  border-color: var(--cyber-pink);
+  box-shadow: 0 0 12px var(--pink-glow);
+}
+.lang-divider {
+  opacity: 0.35;
+  font-weight: 300;
+}
+.lang-option {
+  transition: color var(--transition);
+}
+.lang-option--active {
+  color: var(--cyber-pink);
+  text-shadow: 0 0 8px var(--pink-glow);
+}
+
 /* ═══════════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════════ */
@@ -408,11 +449,15 @@ a { color: inherit; text-decoration: none; }
   gap: 0.85rem;
 }
 .project-card__emoji { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+.project-card__titles { min-width: 0; }
 .project-card__title {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--fg);
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .project-card__tagline {
   font-size: 0.75rem;
@@ -431,20 +476,24 @@ a { color: inherit; text-decoration: none; }
   gap: 0.4rem;
 }
 
-/* Project badge */
+/* Project badge — lives in its own row, never overflows */
 .project-badge {
-  margin-left: auto;
-  flex-shrink: 0;
+  display: inline-block;
+  align-self: flex-start;
+  width: fit-content;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  padding: 0.2rem 0.6rem;
+  padding: 0.2rem 0.7rem;
   border-radius: 999px;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100%;
 }
-.project-badge--completed     { background: rgba(34,197,94,0.12); color: #16a34a; border: 1px solid rgba(34,197,94,0.25); }
-.project-badge--award-winner  { background: rgba(255,0,127,0.1);  color: var(--cyber-pink); border: 1px solid rgba(255,0,127,0.3); }
-.project-badge--active        { background: rgba(59,130,246,0.1); color: #3b82f6; border: 1px solid rgba(59,130,246,0.25); }
+.project-badge--hackathon { background: rgba(255,0,127,0.1);  color: var(--cyber-pink); border: 1px solid rgba(255,0,127,0.3); }
+.project-badge--active    { background: rgba(59,130,246,0.1); color: #3b82f6; border: 1px solid rgba(59,130,246,0.25); }
+.project-badge--research  { background: rgba(168,85,247,0.1); color: #a855f7; border: 1px solid rgba(168,85,247,0.25); }
+.project-badge--concept   { background: rgba(234,179,8,0.1);  color: #ca8a04; border: 1px solid rgba(234,179,8,0.25); }
 
 /* Tech chip */
 .tech-chip {

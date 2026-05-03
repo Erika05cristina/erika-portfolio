@@ -1,10 +1,14 @@
+"use client";
+
 import { SITE_DATA } from "@/config/data";
+import { useLanguage } from "@/context/LanguageContext";
 import ProjectCard from "@/components/ProjectCard";
 import CyberLab from "@/components/CyberLab";
 import Terminal from "@/components/Terminal";
 
 export default function Home() {
-  const { name, role, subtitle, company, achievements, skills, socials } = SITE_DATA;
+  const { lang, setLang, t } = useLanguage();
+  const { name, role, subtitle, company, socials, skills } = SITE_DATA;
 
   return (
     <div className="page-wrapper">
@@ -20,19 +24,33 @@ export default function Home() {
           <span className="navbar__logo-bracket">/&gt;</span>
         </span>
         <nav className="navbar__links" aria-label="Main navigation">
-          <a href="#projects" className="navbar__link">Projects</a>
-          <a href="#skills" className="navbar__link">Skills</a>
-          <a href="#cyber-lab" className="navbar__link">Cyber-Lab</a>
-          <a href="#terminal" className="navbar__link">Terminal</a>
+          <a href="#projects" className="navbar__link">{t.nav.projects}</a>
+          <a href="#skills" className="navbar__link">{t.nav.skills}</a>
+          <a href="#cyber-lab" className="navbar__link">{t.nav.cyberLab}</a>
+          <a href="#terminal" className="navbar__link">{t.nav.terminal}</a>
         </nav>
-        <a
-          href={socials.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="navbar__cta"
-        >
-          Hire Me ↗
-        </a>
+
+        {/* Language Toggle + CTA */}
+        <div className="navbar__actions">
+          <button
+            id="lang-toggle"
+            className="lang-toggle"
+            onClick={() => setLang(lang === "en" ? "es" : "en")}
+            aria-label={lang === "en" ? "Switch to Spanish" : "Cambiar a Inglés"}
+          >
+            <span className={`lang-option ${lang === "en" ? "lang-option--active" : ""}`}>EN</span>
+            <span className="lang-divider">|</span>
+            <span className={`lang-option ${lang === "es" ? "lang-option--active" : ""}`}>ES</span>
+          </button>
+          <a
+            href={socials.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="navbar__cta"
+          >
+            {t.nav.hireMeCta}
+          </a>
+        </div>
       </header>
 
       <main id="main-content">
@@ -41,7 +59,7 @@ export default function Home() {
           <div className="hero-content">
             <p className="hero-eyebrow">
               <span className="hero-eyebrow__dot" aria-hidden="true" />
-              Available for DevSecOps &amp; Forensics roles
+              {t.hero.eyebrow}
             </p>
 
             <h1 className="hero-name">{name}</h1>
@@ -53,27 +71,30 @@ export default function Home() {
             </div>
 
             <p className="hero-company">
-              Currently at{" "}
+              {t.hero.currentlyAt}{" "}
               <strong className="hero-company__name">{company}</strong>
             </p>
 
             {/* Achievement chips */}
             <div className="achievement-row" role="list">
-              {achievements.map((a) => (
-                <div key={a.label} className="achievement-chip" role="listitem">
-                  <span aria-hidden="true">{a.icon}</span>
-                  <div>
-                    <span className="achievement-chip__label">{a.label}</span>
-                    <span className="achievement-chip__detail">{a.detail}</span>
+              {(["🏆", "🔬", "🎤", "✨"] as const).map((icon, i) => {
+                const a = t.achievements[i];
+                return (
+                  <div key={i} className="achievement-chip" role="listitem">
+                    <span aria-hidden="true">{icon}</span>
+                    <div>
+                      <span className="achievement-chip__label">{a.label}</span>
+                      <span className="achievement-chip__detail">{a.detail}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* CTAs */}
             <div className="hero-ctas">
               <a href="#projects" className="btn btn--primary">
-                View Projects
+                {t.hero.viewProjects}
               </a>
               <a
                 href={socials.github}
@@ -81,7 +102,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="btn btn--ghost"
               >
-                GitHub ↗
+                {t.hero.github}
               </a>
             </div>
           </div>
@@ -96,10 +117,17 @@ export default function Home() {
             </div>
             <pre className="code-block__body"><code>{`const engineer = {
   name: "Erika Villa",
-  stack: ["TypeScript", "Python",
-          "Next.js", "Security"],
+  stack: [
+    "TypeScript",
+    "Python",
+    "Next.js",
+    "Node.js",
+    "Docker",
+    "MCP",
+    "Security"
+  ],
   focus: "DevSecOps",
-  status: "open_to_work",
+  status: "open_to_learning",
   motto: "Build secure. Think first."
 };`}</code></pre>
           </div>
@@ -108,14 +136,12 @@ export default function Home() {
         {/* ── Projects ────────────────────────────────────────── */}
         <section id="projects" className="section">
           <div className="section-header">
-            <h2 className="section-title">Key Projects</h2>
-            <p className="section-subtitle">
-              Things I&apos;ve built with purpose.
-            </p>
+            <h2 className="section-title">{t.projects.title}</h2>
+            <p className="section-subtitle">{t.projects.subtitle}</p>
           </div>
           <div className="projects-grid">
             {[...SITE_DATA.projects].map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} lang={lang} />
             ))}
           </div>
         </section>
@@ -123,22 +149,26 @@ export default function Home() {
         {/* ── Skills ──────────────────────────────────────────── */}
         <section id="skills" className="section">
           <div className="section-header">
-            <h2 className="section-title">Tech Stack</h2>
-            <p className="section-subtitle">Tools I trust in production.</p>
+            <h2 className="section-title">{t.skills.title}</h2>
+            <p className="section-subtitle">{t.skills.subtitle}</p>
           </div>
           <div className="skills-grid">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="skill-group">
-                <h3 className="skill-group__title">{category}</h3>
-                <div className="skill-group__chips">
-                  {items.map((skill) => (
-                    <span key={skill} className="skill-chip">
-                      {skill}
-                    </span>
-                  ))}
+          {(Object.entries(skills) as unknown as [keyof typeof t.skills.categories, string[]][]).map(
+              ([category, items]) => (
+                <div key={category} className="skill-group">
+                  <h3 className="skill-group__title">
+                    {t.skills.categories[category]}
+                  </h3>
+                  <div className="skill-group__chips">
+                    {items.map((skill) => (
+                      <span key={skill} className="skill-chip">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </section>
 
@@ -148,9 +178,9 @@ export default function Home() {
         {/* ── Terminal ────────────────────────────────────────── */}
         <section id="terminal" className="section section--terminal">
           <div className="section-header">
-            <h2 className="section-title">Interactive Terminal</h2>
+            <h2 className="section-title">{t.terminal.title}</h2>
             <p className="section-subtitle">
-              Prefer the command line? Try{" "}
+              {t.terminal.subtitle}{" "}
               <code className="inline-code">help</code>,{" "}
               <code className="inline-code">whoami</code>,{" "}
               <code className="inline-code">projects</code>.
@@ -163,7 +193,7 @@ export default function Home() {
       {/* ── Footer ──────────────────────────────────────────── */}
       <footer className="footer">
         <p className="footer__text">
-          Built with Next.js &amp; TypeScript ·{" "}
+          {t.footer.built} ·{" "}
           <span className="footer__pink">Erika Cristina Villa Quishpi</span> ·{" "}
           {new Date().getFullYear()}
         </p>

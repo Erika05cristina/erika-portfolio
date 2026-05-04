@@ -45,6 +45,18 @@ export default function ProjectCard({ project, lang }: ProjectCardProps) {
           </span>
         ))}
       </div>
+
+      {/* Link button — only shown when project has a public URL */}
+      {"link" in project && project.link && (
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-card__link"
+        >
+          {t.projects.viewProject}
+        </a>
+      )}
     </article>
   );
 }

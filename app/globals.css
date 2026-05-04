@@ -459,6 +459,24 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
   gap: 0.4rem;
 }
+.project-card__link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cyber-pink);
+  border: 1px solid var(--border-2);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  width: fit-content;
+  transition: all var(--transition);
+}
+.project-card__link:hover {
+  background: rgba(255, 0, 127, 0.08);
+  box-shadow: 0 0 10px var(--pink-glow);
+  transform: translateY(-1px);
+}
 
 /* Project badge — lives in its own row, never overflows */
 .project-badge {
@@ -757,4 +775,98 @@ a { color: inherit; text-decoration: none; }
   padding: 0.1em 0.4em;
   border-radius: 4px;
   border: 1px solid rgba(255,0,127,0.2);
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — MOBILE
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Navbar ───────────────────────────────── */
+  .navbar {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+  .navbar__links {
+    order: 3;               /* mueve los links debajo del logo y acciones */
+    width: 100%;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .navbar__logo { margin-right: 0; }
+  .navbar__actions { margin-left: auto; }
+
+  /* ── Hero ─────────────────────────────────── */
+  .hero-section {
+    grid-template-columns: 1fr;
+    padding: 3rem 0 2rem;
+    gap: 2rem;
+  }
+  .hero-name { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+  .hero-roles { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .hero-role-divider { display: none; }
+  .hero-code-block { font-size: 0.75rem; }
+
+  /* ── Achievement chips ────────────────────── */
+  .achievement-row { gap: 0.5rem; }
+  .achievement-chip { padding: 0.4rem 0.7rem; font-size: 0.72rem; }
+
+  /* ── CTAs ─────────────────────────────────── */
+  .hero-ctas { flex-direction: column; gap: 0.6rem; }
+  .btn { justify-content: center; width: 100%; max-width: 260px; }
+
+  /* ── Sections ─────────────────────────────── */
+  .section { padding: 2.5rem 0; }
+  .section-header { margin-bottom: 1.75rem; }
+
+  /* ── Projects grid ────────────────────────── */
+  .projects-grid { grid-template-columns: 1fr; }
+
+  /* ── Skills grid ──────────────────────────── */
+  .skills-grid { grid-template-columns: 1fr; }
+
+  /* ── Cyber Lab ────────────────────────────── */
+  .cyberlab-grid { grid-template-columns: 1fr; }
+
+  /* ── Terminal ─────────────────────────────── */
+  .terminal-window { border-radius: var(--radius-md); }
+  .terminal-body {
+    font-size: 0.72rem;
+    min-height: 260px;
+    max-height: 340px;
+    padding: 1rem;
+  }
+  .terminal-input { font-size: 0.72rem; }
+
+  /* ── Footer ───────────────────────────────── */
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .footer__links { justify-content: center; }
+}
+
+/* ── Extra pequeño (≤480px) ──────────────────── */
+@media (max-width: 480px) {
+  html { font-size: 15px; }    /* baja base para pantallas muy chicas */
+
+  .page-wrapper { padding: 0 1rem; }
+  .navbar { margin: 0 -1rem; }
+
+  .hero-section { padding: 2rem 0 1.5rem; }
+  .hero-name { font-size: clamp(1.6rem, 9vw, 2.2rem); }
+
+  .achievement-chip { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+
+  .code-block__body { font-size: 0.7rem; padding: 1rem; }
+
+  .terminal-body {
+    font-size: 0.68rem;
+    min-height: 220px;
+    max-height: 300px;
+    padding: 0.85rem;
+  }
 }

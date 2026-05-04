@@ -31,6 +31,7 @@ export const translations = {
     projects: {
       title: "Key Projects",
       subtitle: "Things I've built with purpose.",
+      viewProject: "View project ↗",
       status: {
         hackathon: "Hackathon Project",
         active: "Active Development",
@@ -160,6 +161,7 @@ export const translations = {
     projects: {
       title: "Proyectos Clave",
       subtitle: "Cosas que construí con propósito.",
+      viewProject: "Ver proyecto ↗",
       status: {
         hackathon: "Proyecto Hackathon",
         active: "En Desarrollo Activo",

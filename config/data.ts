@@ -32,6 +32,7 @@ export const SITE_DATA = {
       tech: ["Blockchain (Concepts)", "Cryptography", "Hashes"],
       status: "hackathon" as const,
       highlight: true,
+      link: "https://invisi-claim.vercel.app/",
     },
     {
       id: "sybil",
@@ -40,6 +41,7 @@ export const SITE_DATA = {
       tech: ["MCP", "TypeScript", "Notion API"],
       status: "hackathon" as const,
       highlight: true,
+      link: "https://dev.to/erika_cristina15/sybil-real-time-risk-intelligence-2ebo",
     },
     {
       id: "volki",
@@ -56,6 +58,7 @@ export const SITE_DATA = {
       tech: ["AI", "Security Basics", "EIP-8004"],
       status: "hackathon" as const,
       highlight: false,
+      link: "https://en-krypt-trust-extension.vercel.app/",
     },
   ] as const,
 

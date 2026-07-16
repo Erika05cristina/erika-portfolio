@@ -16,13 +16,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Erika Villa — Computer Science Engineer & Full Stack Developer",
   description:
-    "Portfolio of Erika Cristina Villa Quishpi — Computer Science Engineer, Full Stack Developer at InitGrammers S.A.S., transitioning to DevSecOps & Digital Forensics.",
+    "Portfolio of Erika Cristina Villa Quishpi — Computer Science Engineer, Software Development Analyst at ETIKOS.",
   keywords: [
     "Erika Villa",
+    "Software Development Analyst",
     "Full Stack Developer",
     "Computer Science Engineer",
+    "Cybersecurity",
     "DevSecOps",
-    "Digital Forensics",
     "Next.js",
     "TypeScript",
     "Ecuador",

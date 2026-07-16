@@ -2,8 +2,8 @@ export const SITE_DATA = {
   name: "Erika Cristina Villa Quishpi",
   shortName: "Erika Villa",
   role: "Computer Science Engineer | Full Stack Developer",
-  subtitle: "Bridging Full Stack Development with Cybersecurity",
-  company: "InitGrammers S.A.S.",
+  subtitle: "Focused on Software Development & Web Engineering",
+  company: "ETIKOS",
   location: "Cuenca, Ecuador 🇪🇨",
 
   education: {
@@ -20,8 +20,8 @@ export const SITE_DATA = {
   },
 
   currentFocus: {
-    en: "Transitioning to Cybersecurity and deepening in Web3",
-    es: "En transición hacia Ciberseguridad y profundizando en Web3",
+    en: "Software Development Analyst at ETIKOS",
+    es: "Analista de Desarrollo de Software en ETIKOS",
   },
 
   projects: [
@@ -74,7 +74,11 @@ skills: {
     "DevSecOps", 
     "Digital Forensics", 
     "Web3 Fundamentals", 
-    "Network Security"
+    "Network Security",
+    "Software Architecture", 
+    "RESTful APIs", 
+    "Clean Code & Best Practices", 
+    "Database Optimization"
   ],
   tools: [
     "Docker",

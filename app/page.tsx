@@ -122,12 +122,12 @@ export default function Home() {
     "Python",
     "Next.js",
     "Node.js",
+    "PostgreSQL",
     "Docker",
-    "MCP",
-    "Security"
+    "Git"
   ],
-  focus: "DevSecOps",
-  status: "open_to_learning",
+  focus: "Software Development",
+  status: "growing_at_etikos",
   motto: "Build secure. Think first."
 };`}</code></pre>
           </div>

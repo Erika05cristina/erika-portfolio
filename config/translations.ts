@@ -13,7 +13,7 @@ export const translations = {
 
     // ── Hero ────────────────────────────────────────────────────
     hero: {
-      eyebrow: "DevSecOps Trainee | Software Developer",
+      eyebrow: "Software Development Analyst",
       currentlyAt: "Currently at",
       viewProjects: "View Projects",
       github: "GitHub ↗",
@@ -95,7 +95,7 @@ export const translations = {
       welcomeMessage: [
         "╔══════════════════════════════════════════════╗",
         "║    ERIKA VILLA | FULL STACK DEVELOPER        ║",
-        "║    Currently learning Security & Web3        ║",
+        "║    Software Development Analyst at ETIKOS    ║",
         "╚══════════════════════════════════════════════╝",
         "Type 'help' to see my learning path and projects.",
       ],
@@ -143,7 +143,7 @@ export const translations = {
 
     // ── Hero ────────────────────────────────────────────────────
     hero: {
-      eyebrow: "Aprendiz de DevSecOps | Desarrolladora de Software",
+      eyebrow: "Analista de Desarrollo de Software",
       currentlyAt: "Actualmente en",
       viewProjects: "Ver Proyectos",
       github: "GitHub ↗",
@@ -225,7 +225,7 @@ export const translations = {
       welcomeMessage: [
         "╔══════════════════════════════════════════════╗",
         "║    ERIKA VILLA | DESARROLLADORA FULL STACK   ║",
-        "║    Aprendiendo Seguridad y Web3              ║",
+        "║ Analista de Desarrollo de Software en ETIKOS ║",
         "╚══════════════════════════════════════════════╝",
         "Escribe 'help' para ver mi camino y proyectos.",
       ],

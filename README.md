@@ -34,7 +34,7 @@
 const erika = {
   name     : "Erika Cristina Villa Quishpi",
   location : "Cuenca, Ecuador 🇪🇨",
-  company  : "InitGrammers S.A.S.",
+  company  : "ETIKOS",
   education: "Computer Science Engineer — UPS (GPA 90/100)",
   focus    : "Bridging Full Stack Development with Cybersecurity",
   status   : "open_to_learning",
@@ -42,7 +42,7 @@ const erika = {
 };
 ```
 
-I'm a **Computer Science Engineer** and **Full Stack Developer** actively transitioning into **DevSecOps** and exploring **Digital Forensics** and **Web3**. I enjoy building things with purpose — from risk intelligence servers to blockchain-based authorship tools.
+I'm a **Computer Science Engineer** and **Software Development Analyst** at ETIKOS, blending software engineering and cybersecurity. I enjoy building things with purpose — from risk intelligence servers to blockchain-based authorship tools.
 
 ### 🏆 Achievements
 
@@ -74,20 +74,7 @@ I'm a **Computer Science Engineer** and **Full Stack Developer** actively transi
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 
-**Currently Learning 📖**
-![DevSecOps](https://img.shields.io/badge/DevSecOps-FF007F?style=flat-square)
-![Digital Forensics](https://img.shields.io/badge/Digital_Forensics-6B21A8?style=flat-square)
-![Web3](https://img.shields.io/badge/Web3-F6851B?style=flat-square&logo=ethereum&logoColor=white)
-![Network Security](https://img.shields.io/badge/Network_Security-0EA5E9?style=flat-square)
 
-### 🌱 Learning Path
-
-| Area | Progress |
-|------|----------|
-| 🌐 Network Security | ████████████░░░░░░░ 50% |
-| 🔧 DevSecOps Fundamentals | ██████████░░░░░░░░░ 35% |
-| ⛓️ Web3 & Smart Contracts | █████████░░░░░░░░░░ 30% |
-| 🔍 Digital Forensics | ██████░░░░░░░░░░░░░ 20% |
 
 <p align="center">
   <a href="https://erika-portfolio-seven.vercel.app/" target="_blank">
@@ -126,7 +113,7 @@ I'm a **Computer Science Engineer** and **Full Stack Developer** actively transi
 const erika = {
   nombre   : "Erika Cristina Villa Quishpi",
   ubicación: "Cuenca, Ecuador 🇪🇨",
-  empresa  : "InitGrammers S.A.S.",
+  empresa  : "ETIKOS",
   educación: "Ingeniera en Computación — UPS (Nota: 90/100)",
   enfoque  : "Conectando el Desarrollo Full Stack con la Ciberseguridad",
   estado   : "aprendiendo_siempre",
@@ -134,7 +121,7 @@ const erika = {
 };
 ```
 
-Soy **Ingeniera en Ciencias de la Computación** y **Desarrolladora Full Stack** en transición activa hacia **DevSecOps**, explorando **Forense Digital** y **Web3**. Me apasiona construir cosas con propósito — desde servidores de inteligencia de riesgo hasta herramientas de autoría en blockchain.
+Soy **Ingeniera en Ciencias de la Computación** y **Analista de Desarrollo de Software** en ETIKOS, conectando el desarrollo de software con la ciberseguridad. Me apasiona construir cosas con propósito — desde servidores de inteligencia de riesgo hasta herramientas de autoría en blockchain.
 
 ### 🏆 Logros
 
